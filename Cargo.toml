@@ -3,6 +3,11 @@ name = "mpvpaperManager"
 version = "0.1.0"
 edition = "2024"
 
+[[bin]]
+name = "mpvpaperManager"
+path = "src/main.rs"
+
 [dependencies]
-anyhow = "1.0.104"
-dirs = "7.0.0"
+anyhow = "1"
+crossterm = "0.29.0"
+dirs = "7" 

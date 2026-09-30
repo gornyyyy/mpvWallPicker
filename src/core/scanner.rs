@@ -8,7 +8,7 @@ const EXTENSIONS: &[&str] = &["mp4", "gif", "webm"];
 
 pub fn scan(dir: &Path) -> Result<Vec<PathBuf>> {
     let mut result = Vec::new();
-    collect(dir, &mut result);
+    collect(dir, &mut result)?;
     result.sort();
 
     Ok(result)
