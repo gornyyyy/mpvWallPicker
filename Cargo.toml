@@ -9,6 +9,7 @@ path = "src/main.rs"
 
 [dependencies]
 anyhow = "1"
+async-channel = "2.5.0"
 dirs = "7" 
 gtk = { version = "0.11.5", package = "gtk4", features = ["v4_12"] }
 kdl = { version = "6.7.1", features = ["v1-fallback"] }
