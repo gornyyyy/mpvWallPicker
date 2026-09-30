@@ -11,17 +11,42 @@ fn load_css() {
         r#"
         window {
             background-color: transparent;
+            border: none;
+            box-shadow: none;
         }
         .item {
             padding: 6px;
             border-radius: 8px;
+            border: none;
+            box-shadow: none;
+            outline: none;
         }
         .item.selected {
             transform: scale(1.2);
-            transition: transform 20ms ease;
+        }
+        .item label {
+            opacity: 0;
+            transition: opacity 200ms ease;
         }
         .preview {
-            transition: transform 20ms ease;
+            border: none;
+            box-shadow: none;
+            outline: none;
+        }
+        scrolledwindow {
+            border: none;
+            box-shadow: none;
+            outline: none;
+        }
+        scrolledwindow undershoot {
+            background: none;
+            box-shadow: none;
+            border: none;
+        }
+        scrollbar {
+            opacity: 0;
+            min-width: 0;
+            min-height: 0;
         }
         "#,
     );

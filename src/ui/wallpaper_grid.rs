@@ -25,14 +25,14 @@ pub fn build_wallpaper_grid(
 
     let hbox = GtkBox::builder()
         .orientation(Orientation::Horizontal)
-        .spacing(70)
+        .spacing(65)
         .margin_top(12)
         .margin_bottom(12)
         .vexpand(true)
         .build();
 
     let left_spacer = GtkBox::builder()
-        .width_request(side_margin)
+        .width_request(side_margin-65)
         .build();
     hbox.append(&left_spacer);
 
@@ -63,7 +63,7 @@ pub fn build_wallpaper_grid(
 
     let scrolled = ScrolledWindow::builder()
         .child(&hbox)
-        .hscrollbar_policy(PolicyType::Automatic)
+        .hscrollbar_policy(PolicyType::External)
         .vscrollbar_policy(PolicyType::Never)
         .vexpand(true)
         .hexpand(true)
