@@ -1,10 +1,7 @@
-use anyhow::bail;
 use anyhow::Context;
 use anyhow::Result;
 use kdl::KdlDocument;
 use kdl::KdlValue;
-use kdl::KdlNode;
-use kdl::KdlEntry;
 use std::fs;
 use std::path::Path;
 use std::path::PathBuf;
