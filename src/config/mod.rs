@@ -25,37 +25,29 @@ pub fn update_wallpaper_path(new_wallpaper: &Path) -> Result<()> {
     let mut found = false;
 
     for node in doc.nodes_mut() {
-        // Ищем узел spawn-at-startup
         if node.name().value() != "spawn-at-startup" {
             continue;
         }
 
-        // Проходим по всем аргументам узла
         for entry in node.entries_mut() {
             let Some(value) = entry.value().as_string() else {
                 continue;
             };
-
-            // Ищем строку, которая содержит "mpvpaper"
+            
             if !value.contains("mpvpaper") {
                 continue;
             }
 
-            println!("Найдена строка с mpvpaper: {value}");
-
-            // Ищем "ALL " в строке
             let Some(pos) = value.rfind("ALL ") else {
                 println!("В строке нет 'ALL '");
                 continue;
             };
 
-            // Всё до "ALL " включительно — префикс
             let prefix = &value[..pos + 4]; // "mpvpaper -o '...' ALL "
             let new_value = format!("{}{}", prefix, new_path);
 
-            println!("Новая строка: {new_value}");
-
             *entry.value_mut() = KdlValue::String(new_value);
+            entry.clear_format();
             found = true;
             break;
         }
@@ -72,7 +64,9 @@ pub fn update_wallpaper_path(new_wallpaper: &Path) -> Result<()> {
         );
     }
 
-    fs::write(&path, doc.to_string())
+    let output = doc.to_string();
+
+    fs::write(&path, &output)
         .with_context(|| format!("Не записывается {}", path.display()))?;
 
     Ok(())
