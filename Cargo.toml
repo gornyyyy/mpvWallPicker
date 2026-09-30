@@ -9,5 +9,5 @@ path = "src/main.rs"
 
 [dependencies]
 anyhow = "1"
-crossterm = "0.29.0"
 dirs = "7" 
+kdl = { version = "6.7.1", features = ["v1-fallback"] }

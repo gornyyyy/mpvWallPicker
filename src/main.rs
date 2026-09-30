@@ -1,6 +1,5 @@
 use anyhow::Result;
 use anyhow::bail;
-use anyhow::Context;
 use std::path::Path;
 use std::path::PathBuf;
 
@@ -56,7 +55,7 @@ fn run() -> Result<()> {
         core::mpvpaper::start(selected)?;
 
         // Обновить конфиг
-        // config::update_wallpaper_path(selected)?;
+        config::update_wallpaper_path(selected)?;
     }
     Ok(())
 }

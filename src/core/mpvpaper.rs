@@ -25,7 +25,7 @@ pub fn start(file: &Path) -> Result<()> {
     Command::new("sh")
         .args(["-c", &inner])
         .spawn()
-        .context("Не удалось запустить mpvpaper через sh -c")?;
+        .context("Не удалось запустить mpvpaper")?;
 
     Ok(())
 }
