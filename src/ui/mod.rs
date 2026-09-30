@@ -1,2 +1,2 @@
 pub mod window;
-pub mod wallpapers_grid;
+pub mod wallpaper_grid;
