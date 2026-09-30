@@ -3,6 +3,8 @@ use anyhow::Context;
 use anyhow::Result;
 use kdl::KdlDocument;
 use kdl::KdlValue;
+use kdl::KdlNode;
+use kdl::KdlEntry;
 use std::fs;
 use std::path::Path;
 use std::path::PathBuf;
@@ -58,10 +60,24 @@ pub fn update_wallpaper_path(new_wallpaper: &Path) -> Result<()> {
     }
 
     if !found {
-        bail!(
-            "В {} не найден spawn-at-startup с mpvpaper",
-            path.display()
+        let mpvpaper_cmd = format!(
+            "mpvpaper -o 'no-audio --loop-playlist --hwdec=vaapi --vo=gpu --panscan=1.0' ALL {new_path}");
+
+        let new_line = format!(
+            "spawn-at-startup \"sh\" \"-c\" \"{mpvpaper_cmd}\""
         );
+
+        let mut content = fs::read_to_string(&path)?;
+        if !content.ends_with('\n') {
+            content.push('\n');
+        }
+        content.push_str(&new_line);
+        content.push('\n');
+
+        fs::write(&path, content)
+            .with_context(|| format!("Не записывается {}", path.display()))?;
+
+        return Ok(());
     }
 
     let output = doc.to_string();
