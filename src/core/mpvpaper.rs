@@ -5,7 +5,7 @@ use std::process::Command;
 
 pub fn stop() {
     let status = Command::new("pkill")
-        .args(["-x", "mpvpaper"])
+        .args(["-f", "mpvpaper"])
         .status();
 
     match status {

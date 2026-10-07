@@ -132,6 +132,8 @@ fn build_wallpaper_item(path: &PathBuf) -> GtkBox {
         .width_request(600)
         .vexpand(true)
         .css_classes(["preview"])
+        .can_shrink(true)
+        .keep_aspect_ratio(true)
         .build();
 
     let file = gio::File::for_path(path);

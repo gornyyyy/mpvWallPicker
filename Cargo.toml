@@ -1,10 +1,10 @@
 [package]
-name = "mpvpaperManager"
+name = "mpvWallPicker"
 version = "0.1.0"
 edition = "2024"
 
 [[bin]]
-name = "mpvpaperManager"
+name = "mpvWallpicker"
 path = "src/main.rs"
 
 [dependencies]
